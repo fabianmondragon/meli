@@ -1,11 +1,11 @@
 package com.example.core.domain.usecases
 
 import com.example.core.data.repository.SearchRepository
+import com.example.core.domain.entity.ResultEntity
 
-class SearchProduct (private val searchRepository: SearchRepository) {
+class SearchProduct(private val searchRepository: SearchRepository) {
     //suspend operator fun invoke() = searchRepository.searchRepository()
-    suspend fun searchRepository (){
-        val hola = searchRepository.searchProduct()
-        val string = ""
+    suspend fun searchRepository(): List<ResultEntity> {
+        return searchRepository.searchProduct()
     }
 }
