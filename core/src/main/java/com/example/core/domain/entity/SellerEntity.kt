@@ -1,13 +1,12 @@
 package com.example.core.domain.entity
 
-
-data class SellerEntity (
-	val id : Int,
-	val permalink : String?,
-	val power_seller_status : String?,
-	val car_dealer : Boolean,
-	val real_estate_agency : Boolean,
-	val tags : List<String>
+data class SellerEntity(
+    val id: Int,
+    val permalink: String?,
+    val power_seller_status: String?,
+    val car_dealer: Boolean,
+    val real_estate_agency: Boolean,
+    val tags: List<String>
 )
 
 /*

@@ -5,5 +5,5 @@ import java.sql.ResultSet
 
 interface  SearchProductRemoteDataSource {
 
-    suspend fun searchProduct (): List<ResultEntity>
+    suspend fun searchProduct (query:String): List<ResultEntity>
 }

@@ -1,6 +1,5 @@
 package com.example.myapplication.presentation
 
-import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,22 +16,19 @@ class MainViewModel : ViewModel() {
     lateinit var searchProduct: SearchProduct
     lateinit var searchRepository: SearchRepository
     lateinit var searchRemoteDataSource: SearchProductRemoteDataSourceImpl
-    lateinit var textView: TextView
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
+    var productList = MutableLiveData<List<ResultEntity>>()
 
-    var listProdut = MutableLiveData<List<ResultEntity>>()
-
-    fun searchProduct() {
+    fun searchProduct(query: String?) {
         searchRemoteDataSource = SearchProductRemoteDataSourceImpl()
         searchRepository = SearchRepositoryImpl(searchRemoteDataSource)
         searchProduct = SearchProduct(searchRepository)
         coroutineScope.launch {
-            listProdut.postValue(searchProduct.searchRepository())
+            productList.postValue(query?.let { searchProduct.searchRepository(it) })
         }
     }
 
-
-    fun getOnInitialValueDetectedLiveData(): LiveData<List<ResultEntity>> = listProdut
+    fun getOnInitialValueDetectedLiveData(): LiveData<List<ResultEntity>> = productList
 
 
 }

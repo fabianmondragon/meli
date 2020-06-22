@@ -6,7 +6,8 @@ import com.example.core.domain.entity.ResultEntity
 
 class SearchRepositoryImpl (private val remoteDataSource: SearchProductRemoteDataSource) :
     SearchRepository {
-    override suspend fun searchProduct(): List<ResultEntity> {
-        return remoteDataSource.searchProduct()
+
+    override suspend fun searchProduct(query: String): List<ResultEntity> {
+        return remoteDataSource.searchProduct(query)
     }
 }

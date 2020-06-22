@@ -1,11 +1,14 @@
 package com.example.myapplication.presentation
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -15,9 +18,8 @@ import com.example.core.domain.entity.ResultEntity
 import com.example.myapplication.R
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
-    lateinit var textView: TextView
     lateinit var mainViewModel: MainViewModel
     lateinit var productsAdapter: ProductsAdapter
 
@@ -25,12 +27,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mainViewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
-        textView = findViewById(R.id.TextView)
-        textView.setOnClickListener { v: View ->
-            Toast.makeText(this, "hola", Toast.LENGTH_LONG).show()
-            mainViewModel.searchProduct()
-
-        }
         setObserver()
         configUI()
     }
@@ -64,7 +60,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
+        menuInflater.inflate(R.menu.main, menu)
+        var itemMenu: MenuItem = menu!!.findItem(R.id.action_search)
+        var searchView: SearchView = itemMenu.actionView as SearchView
+        searchView.queryHint = getString(R.string.search_msg)
+        searchView.setOnQueryTextListener(this)
         return super.onCreateOptionsMenu(menu)
     }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        mainViewModel.searchProduct(query)
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        // No its necessary implement this method
+        return true
+    }
+
+
 }

@@ -7,8 +7,8 @@ import com.example.myapplication.data.network.api.ProductService
 class SearchProductRemoteDataSourceImpl : SearchProductRemoteDataSource {
 
     val retrofitInstance = RetrofitInstance.createInstance().create(ProductService::class.java)
-    override suspend fun searchProduct() =
-        retrofitInstance.searchProduct("MLA", "Celular").results.map {
+    override suspend fun searchProduct(query: String) =
+        retrofitInstance.searchProduct("MLA", query).results.map {
             ResultEntity(
                 it.id,
                 it.site_id,
