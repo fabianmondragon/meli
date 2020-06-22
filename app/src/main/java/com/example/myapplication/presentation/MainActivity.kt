@@ -1,6 +1,7 @@
 package com.example.myapplication.presentation
 
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -60,5 +61,10 @@ class MainActivity : AppCompatActivity() {
         recyclerView.addItemDecoration(verticalDecorator);
         recyclerView.addItemDecoration(horizontalDecorator);
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        return super.onCreateOptionsMenu(menu)
     }
 }
