@@ -3,9 +3,10 @@ package com.example.myapplication.presentation.model
 import android.os.Parcel
 import android.os.Parcelable
 import java.util.ArrayList
+import javax.inject.Inject
 
 
-data class ResultPresentation(
+data class ResultPresentation @Inject constructor(
     val id: String?,
     val site_id: String?,
     val title: String?,

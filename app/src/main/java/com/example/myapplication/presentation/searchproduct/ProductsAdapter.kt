@@ -16,7 +16,7 @@ import com.example.myapplication.presentation.model.ResultPresentation
 import com.squareup.picasso.Picasso
 import java.util.*
 
-class ProductsAdapter(
+class ProductsAdapter constructor(
     private var itemList: List<ResultPresentation>,
     private var context: Context
 ) :

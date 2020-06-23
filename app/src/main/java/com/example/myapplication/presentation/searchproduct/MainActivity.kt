@@ -10,18 +10,23 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.core.domain.entity.ResultEntity
+
 import com.example.myapplication.R
+import com.example.myapplication.di.DaggerMeliComponent
+
 import com.example.myapplication.presentation.model.ResultPresentation
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     lateinit var mainViewModel: MainViewModel
+
     lateinit var productsAdapter: ProductsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        DaggerMeliComponent.create().inject(this)
         setContentView(R.layout.activity_main)
         mainViewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
         setObserver()
