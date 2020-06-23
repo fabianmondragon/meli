@@ -1,12 +1,8 @@
-package com.example.myapplication.presentation
+package com.example.myapplication.presentation.searchproduct
 
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
@@ -16,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.core.domain.entity.ResultEntity
 import com.example.myapplication.R
+import com.example.myapplication.presentation.model.ResultPresentation
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
@@ -37,7 +34,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         })
     }
 
-    private fun refreshData(listToShow: List<ResultEntity>) {
+    private fun refreshData(listToShow: List<ResultPresentation>) {
         productsAdapter.updateData(listToShow)
         productsAdapter.notifyDataSetChanged()
 
@@ -46,7 +43,11 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private fun configUI() {
         val gridLayoutManager = GridLayoutManager(this, 2)
         recyclerView.layoutManager = gridLayoutManager
-        productsAdapter = ProductsAdapter(arrayListOf<ResultEntity>())
+        productsAdapter =
+            ProductsAdapter(
+                arrayListOf<ResultPresentation>(),
+                this
+            )
         recyclerView.adapter = productsAdapter
 
         val verticalDecorator = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)

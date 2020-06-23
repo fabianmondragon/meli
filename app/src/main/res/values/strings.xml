@@ -3,5 +3,13 @@
 
     <!--search-->
     <string name="search_msg"> ¿Qué deseas buscar?</string>
+    <string name="buy">Comprar</string>
+    <string name="ubication">Ubicación</string>
+    <string name="main_information">Principal Información</string>
+    <string name="sales">Ventas</string>
+    <string name="number_sales">Numero de ventas:</string>
+    <string name="quantity_available">Cantidad disponible:</string>
+    <string name="state_name">Estado:</string>
+    <string name="city">Ciudad:</string>
 
 </resources>

@@ -1,5 +1,7 @@
-package com.example.myapplication.presentation
+package com.example.myapplication.presentation.searchproduct
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +11,15 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.domain.entity.ResultEntity
 import com.example.myapplication.R
+import com.example.myapplication.presentation.detail.DetailActivity
+import com.example.myapplication.presentation.model.ResultPresentation
 import com.squareup.picasso.Picasso
 import java.util.*
 
-class ProductsAdapter(private var itemList: List<ResultEntity>) :
+class ProductsAdapter(
+    private var itemList: List<ResultPresentation>,
+    private var context: Context
+) :
     RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,7 +36,7 @@ class ProductsAdapter(private var itemList: List<ResultEntity>) :
         holder.priceTextView.text = formatter.toString()
     }
 
-    fun updateData(itemList: List<ResultEntity>) {
+    fun updateData(itemList: List<ResultPresentation>) {
         this.itemList = itemList
     }
 
@@ -49,6 +56,10 @@ class ProductsAdapter(private var itemList: List<ResultEntity>) :
         }
 
         override fun onClick(view: View) {
+            var intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("item", itemList[adapterPosition])
+            context.startActivity(intent)
+
             Toast.makeText(
                 view.context,
                 "Clicked Position = " + adapterPosition, Toast.LENGTH_SHORT
