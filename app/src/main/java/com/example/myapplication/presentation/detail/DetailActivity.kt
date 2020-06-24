@@ -1,14 +1,18 @@
 package com.example.myapplication.presentation.detail
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 import com.example.myapplication.presentation.model.ResultPresentation
+import com.example.myapplication.presentation.searchproduct.MainActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
 import java.util.*
 
 class DetailActivity : AppCompatActivity() {
+    private val TAG = DetailActivity::class.simpleName
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)

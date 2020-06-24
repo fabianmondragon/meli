@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.core.domain.entity.ResultEntity
 import com.example.myapplication.R
 import com.example.myapplication.presentation.detail.DetailActivity
 import com.example.myapplication.presentation.model.ResultPresentation
@@ -60,11 +58,6 @@ class ProductsAdapter constructor(
             intent.putExtra("item", itemList[adapterPosition])
             context.startActivity(intent)
 
-            Toast.makeText(
-                view.context,
-                "Clicked Position = " + adapterPosition, Toast.LENGTH_SHORT
-            )
-                .show()
         }
     }
 }

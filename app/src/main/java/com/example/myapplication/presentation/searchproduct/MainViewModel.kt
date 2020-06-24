@@ -1,16 +1,13 @@
 package com.example.myapplication.presentation.searchproduct
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.core.data.repository.SearchRepository
-import com.example.core.domain.entity.ResultEntity
-import com.example.core.domain.usecases.SearchProduct
+
 import com.example.myapplication.UseCases
-import com.example.myapplication.data.network.SearchProductRemoteDataSourceImpl
-import com.example.myapplication.data.network.SearchRepositoryImpl
+
 import com.example.myapplication.di.DaggerMeliComponent
 import com.example.myapplication.presentation.model.ResultPresentation
 import kotlinx.coroutines.CoroutineScope
@@ -23,9 +20,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     @Inject
     lateinit var useCases: UseCases
 
-
-    lateinit var searchRepository: SearchRepository
-    lateinit var searchRemoteDataSource: SearchProductRemoteDataSourceImpl
+    private val TAG = MainViewModel::class.simpleName
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
     var productList = MutableLiveData<List<ResultPresentation>>()
     var messague = MutableLiveData<String>()
@@ -55,6 +50,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 }
             }
         } catch (exception: Exception) {
+            Log.e(TAG, exception.message)
             messague.value = "Ocurrio un error, por favor intente más tarde"
         }
 

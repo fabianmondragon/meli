@@ -2,6 +2,7 @@ package com.example.myapplication.presentation.searchproduct
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -20,8 +21,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
+    private val TAG = MainActivity::class.simpleName
     lateinit var mainViewModel: MainViewModel
-
     lateinit var productsAdapter: ProductsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
