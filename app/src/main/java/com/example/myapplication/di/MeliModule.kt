@@ -2,6 +2,7 @@ package com.example.myapplication.di
 
 import android.content.Context
 import com.example.myapplication.presentation.model.ResultPresentation
+import com.example.myapplication.presentation.searchproduct.MapperDomainToPresentation
 import com.example.myapplication.presentation.searchproduct.ProductsAdapter
 import dagger.Module
 import dagger.Provides
@@ -15,5 +16,8 @@ class MeliModule {
 
     @Provides
     fun provideListResultPresentation() = arrayListOf<ResultPresentation>()
+
+    @Provides
+    fun providesMapperDomainToPresentation() = MapperDomainToPresentation()
 
 }

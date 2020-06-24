@@ -11,7 +11,7 @@ class MapperDomainToPresentation {
                 id = it.id,
                 site_id = it.site_id,
                 title = it.title,
-                price = it.price,
+                price = it?.price,
                 available_quantity = it.available_quantity,
                 sold_quantity = it.sold_quantity,
                 buying_mode = it.buying_mode,

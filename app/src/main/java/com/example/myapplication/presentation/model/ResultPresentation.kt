@@ -10,9 +10,9 @@ data class ResultPresentation @Inject constructor(
     val id: String?,
     val site_id: String?,
     val title: String?,
-    val price: Double,
-    val available_quantity: Int,
-    val sold_quantity: Int,
+    val price: Double?,
+    val available_quantity: Int?,
+    val sold_quantity: Int?,
     val buying_mode: String?,
     val condition: String?,
     val thumbnail: String?,
@@ -39,16 +39,15 @@ data class ResultPresentation @Inject constructor(
         parcel.readString(),
         parcel.readString(),
         parcel.readString()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
         parcel.writeString(site_id)
         parcel.writeString(title)
-        parcel.writeDouble(price)
-        parcel.writeInt(available_quantity)
-        parcel.writeInt(sold_quantity)
+        price?.let { parcel.writeDouble(it) }
+        available_quantity?.let { parcel.writeInt(it) }
+        sold_quantity?.let { parcel.writeInt(it) }
         parcel.writeString(buying_mode)
         parcel.writeString(condition)
         parcel.writeString(thumbnail)

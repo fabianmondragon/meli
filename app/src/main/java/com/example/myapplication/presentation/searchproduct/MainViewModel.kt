@@ -14,6 +14,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.IllegalArgumentException
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -24,6 +25,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
     var productList = MutableLiveData<List<ResultPresentation>>()
     var messague = MutableLiveData<String>()
+
+    @Inject
     lateinit var mapperDomainToPresentation: MapperDomainToPresentation
 
     init {
@@ -52,7 +55,18 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         } catch (exception: Exception) {
             Log.e(TAG, exception.message)
             messague.value = "Ocurrio un error, por favor intente más tarde"
+        } catch (nullExcpetion: NullPointerException) {
+            Log.e(TAG, nullExcpetion.message)
+            messague.value = "Ocurrio un error, por favor intente más tarde"
+        } catch (exception: IllegalArgumentException) {
+            Log.e(TAG, exception.message)
+            messague.value = "Ocurrio un error, por favor intente más tarde"
+        } catch (exception: IllegalStateException) {
+            Log.e(TAG, exception.message)
+            messague.value = "Ocurrio un error, por favor intente más tarde"
+
         }
+
 
     }
 

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -25,6 +26,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     lateinit var mainViewModel: MainViewModel
     lateinit var productsAdapter: ProductsAdapter
 
+    private lateinit var spinner: ProgressBar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DaggerMeliComponent.create().inject(this)
@@ -36,11 +39,15 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private fun setObserver() {
         mainViewModel.getOnInitialValueDetectedLiveData().observe(this, Observer {
+            spinner.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
             refreshData(it)
         })
 
         mainViewModel.getOnShowError().observe(this, Observer {
+            spinner.setVisibility(View.GONE)
             showNotFound(it)
+
         })
     }
 
@@ -67,6 +74,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         horizontalDecorator.setDrawable(drawable!!)
         recyclerView.addItemDecoration(verticalDecorator);
         recyclerView.addItemDecoration(horizontalDecorator);
+        spinner = findViewById(R.id.progressBar1);
 
     }
 
@@ -81,6 +89,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         mainViewModel.searchProduct(query)
+        spinner.visibility = View.VISIBLE
+        recyclerView.visibility = View.INVISIBLE
         return true
     }
 

@@ -42,7 +42,6 @@ class SearchProductRemoteDataSourceImpl : SearchProductRemoteDataSource {
                     it.shipping.free_shipping,
                     it.shipping.mode,
                     it.shipping.tags,
-                    it.shipping.logistic_type,
                     it.shipping.store_pick_up
                 ),
                 it.attributes.map { attribute ->
@@ -67,7 +66,6 @@ class SearchProductRemoteDataSourceImpl : SearchProductRemoteDataSource {
 
             )
         }
-
 }
 
 
