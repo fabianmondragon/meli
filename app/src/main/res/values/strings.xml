@@ -10,7 +10,9 @@
     <string name="quantity_available">Cantidad disponible:</string>
     <string name="state_name">Estado:</string>
     <string name="city">Ciudad:</string>
-    <string name="not_found">No encontramos publicaciones:</string>
+    <string name="not_found">No encontramos publicaciones</string>
     <string name="not_found_secundary">Revisa que la palabra esté bien escrita</string>
+    <string name="error_messague">Ocurrio un error, por faovr intente más tarde</string>
+
 
 </resources>
