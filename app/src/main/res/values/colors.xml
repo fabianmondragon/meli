@@ -7,4 +7,5 @@
     <color name="background_color">#F5F5F5</color>
     <color name="white">#FFFFFF</color>
     <color name="btn_color">#3483FA</color>
+    <color name= "not_found_color">#F8F8F8</color>
 </resources>

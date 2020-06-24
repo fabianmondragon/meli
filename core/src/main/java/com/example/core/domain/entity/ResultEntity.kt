@@ -18,7 +18,7 @@ data class ResultEntity(
     val accepts_mercadopago: Boolean,
     val address: AddressEntity,
     val shipping: ShippingEntity,
-    val attributes: List<AttributesEntity>,
+    val attributes: List<AttributesEntity?>?,
     val original_price: String?,
     val category_id: String,
     val official_store_id: String?,

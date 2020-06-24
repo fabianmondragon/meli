@@ -6,7 +6,7 @@ import android.os.Parcelable
 data class AttributesPresentation(
     val attribute_group_id: String?,
     val source: String?,
-    val value_id: Int,
+    val value_id: Int?,
     val value_name: String?,
     val attribute_group_name: String?,
     val id: String?,
@@ -25,7 +25,9 @@ data class AttributesPresentation(
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(attribute_group_id)
         parcel.writeString(source)
-        parcel.writeInt(value_id)
+        if (value_id != null) {
+            parcel.writeInt(value_id)
+        }
         parcel.writeString(value_name)
         parcel.writeString(attribute_group_name)
         parcel.writeString(id)

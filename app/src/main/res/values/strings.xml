@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
-
     <!--search-->
     <string name="search_msg"> ¿Qué deseas buscar?</string>
     <string name="buy">Comprar</string>
@@ -11,5 +10,7 @@
     <string name="quantity_available">Cantidad disponible:</string>
     <string name="state_name">Estado:</string>
     <string name="city">Ciudad:</string>
+    <string name="not_found">No encontramos publicaciones:</string>
+    <string name="not_found_secundary">Revisa que la palabra esté bien escrita</string>
 
 </resources>

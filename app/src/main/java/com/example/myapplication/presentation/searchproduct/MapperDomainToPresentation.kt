@@ -31,15 +31,15 @@ class MapperDomainToPresentation {
                     logistic_type = it.listing_type_id,
                     store_pick_up = it.shipping.store_pick_up
                 ),
-                attributes = it.attributes.map {
+                attributes = it.attributes?.map {
                     AttributesPresentation(
-                        attribute_group_id = it.attribute_group_id,
-                        source = it.source,
-                        value_id = it.value_id,
-                        value_name = it.value_name,
-                        attribute_group_name = it.attribute_group_name,
-                        id = it.id,
-                        name = it.name
+                        attribute_group_id = it?.attribute_group_id,
+                        source = it?.source,
+                        value_id = it?.value_id,
+                        value_name = it?.value_name,
+                        attribute_group_name = it?.attribute_group_name,
+                        id = it?.id,
+                        name = it?.name
                     )
                 },
                 original_price = it.original_price,

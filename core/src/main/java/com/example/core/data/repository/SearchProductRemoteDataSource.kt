@@ -3,7 +3,7 @@ package com.example.core.data.repository
 import com.example.core.domain.entity.ResultEntity
 import java.sql.ResultSet
 
-interface  SearchProductRemoteDataSource {
+interface SearchProductRemoteDataSource {
 
-    suspend fun searchProduct (query:String): List<ResultEntity>
+    suspend fun searchProduct(query: String): List<ResultEntity>?
 }

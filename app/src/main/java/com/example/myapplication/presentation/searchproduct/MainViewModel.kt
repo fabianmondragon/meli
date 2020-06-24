@@ -28,6 +28,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     lateinit var searchRemoteDataSource: SearchProductRemoteDataSourceImpl
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
     var productList = MutableLiveData<List<ResultPresentation>>()
+    var messague = MutableLiveData<String>()
     lateinit var mapperDomainToPresentation: MapperDomainToPresentation
 
     init {
@@ -38,20 +39,29 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun searchProduct(query: String?) {
 
-        mapperDomainToPresentation = MapperDomainToPresentation()
-        coroutineScope.launch {
-            productList.postValue(query?.let {
-                mapperDomainToPresentation.resultSearchDomainToPresentation(
-                    useCases.searchProduct.searchRepository(
-                        it
-                    )
-                )
-            })
+        try {
+            mapperDomainToPresentation = MapperDomainToPresentation()
+            coroutineScope.launch {
+                useCases.searchProduct.searchRepository(query!!)?.let {
+                    if (it.size == 0) {
+                        messague.postValue("No se encontró resultados")
+                    } else {
+                        productList.postValue(
+                            mapperDomainToPresentation.resultSearchDomainToPresentation(
+                                it
+                            )
+                        )
+                    }
+                }
+            }
+        } catch (exception: Exception) {
+            messague.value = "Ocurrio un error, por favor intente más tarde"
         }
+
     }
 
     fun getOnInitialValueDetectedLiveData(): LiveData<List<ResultPresentation>> = productList
-
+    fun getOnShowError(): LiveData<String> = messague
 
 }
 

@@ -1,8 +1,11 @@
 package com.example.myapplication.presentation.searchproduct
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
@@ -10,13 +13,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-
 import com.example.myapplication.R
 import com.example.myapplication.di.DaggerMeliComponent
-
 import com.example.myapplication.presentation.model.ResultPresentation
 import kotlinx.android.synthetic.main.activity_main.*
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
@@ -36,6 +36,10 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private fun setObserver() {
         mainViewModel.getOnInitialValueDetectedLiveData().observe(this, Observer {
             refreshData(it)
+        })
+
+        mainViewModel.getOnShowError().observe(this, Observer {
+            showNotFound(it)
         })
     }
 
@@ -84,5 +88,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         return true
     }
 
+    private fun showNotFound(messague: String) {
+        Toast.makeText(this, messague, Toast.LENGTH_LONG).show()
+    }
 
 }
