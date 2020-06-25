@@ -22,5 +22,4 @@ class DomainModule {
         SearchProduct(searchRepository)
     )
 
-
 }

@@ -19,5 +19,4 @@ class MeliModule {
 
     @Provides
     fun providesMapperDomainToPresentation() = MapperDomainToPresentation()
-
 }
