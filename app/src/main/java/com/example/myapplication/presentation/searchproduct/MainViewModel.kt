@@ -6,9 +6,7 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.myapplication.R
-
-import com.example.myapplication.UseCases
+import com.example.core.domain.usecases.SearchProductUseCase
 
 import com.example.myapplication.di.DaggerMeliComponent
 import com.example.myapplication.presentation.Constant
@@ -22,8 +20,7 @@ import kotlin.IllegalArgumentException
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     @Inject
-    lateinit var useCases: UseCases
-    private val context: Context = application
+    lateinit var searchProductUseCase: SearchProductUseCase
 
     private val TAG = MainViewModel::class.simpleName
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
@@ -44,7 +41,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         try {
             mapperDomainToPresentation = MapperDomainToPresentation()
             coroutineScope.launch {
-                useCases.searchProduct.searchRepository(query!!)?.let {
+                searchProductUseCase.searchRepository(query!!)?.let {
                     if (it.size == 0) {
                         messague.postValue(Constant.NOT_FOUND)
                     } else {
